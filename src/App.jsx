@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar'
-import Features from './components/Features'
+import PromoKost from './components/PromoKost'
 import HeroSection from './components/HeroSection'
 import Search from './pages/Search';
 // import SearchBar from './components/SearchBar';
@@ -14,12 +14,7 @@ import StrategicLocation from './pages/StrategicLocation';
 
 
 
-function App() {
-  const handleSearch = (query) => {
-    console.log("Pencarian untuk:", query);
-    // Logika pencarian atau filter bisa ditambahkan di sini
-  };
-
+const App = () => {
   return (
     <Router>
       <Navbar />
@@ -29,7 +24,7 @@ function App() {
             <HeroSection />
             {/* <SearchBar onSearch={handleSearch} /> */}
             <NearbyRecommendations />
-            <Features />
+            <PromoKost />
             <Testimonial />
             <Footer />
           </>
