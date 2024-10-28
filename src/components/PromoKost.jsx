@@ -8,7 +8,7 @@ const promos = [
         description: 'Nikmati potongan harga khusus untuk sewa bulanan!', 
         image: '/images/kost1.jpg',  // Path gambar kost
         location: 'Jakarta Selatan', 
-        path: '/promo/monthly-discount' 
+        path: '/MonthlyDiscount' 
     },
     { 
         id: 'new-tenant-special', 
@@ -16,7 +16,7 @@ const promos = [
         description: 'Promo istimewa bagi penyewa baru di kost pilihan.', 
         image: '/images/kost2.jpg',  // Path gambar kost
         location: 'Bandung', 
-        path: '/promo/new-tenant-special' 
+        path: '/NewResidentSpecial' 
     },
     { 
         id: 'student-offer', 
@@ -24,7 +24,7 @@ const promos = [
         description: 'Harga khusus untuk mahasiswa di kost strategis.', 
         image: '/images/kost3.jpg',  // Path gambar kost
         location: 'Bali', 
-        path: '/promo/student-offer' 
+        path: '/PromoMahasiswa' 
     },
     { 
         id: 'long-stay-offer', 
@@ -32,7 +32,7 @@ const promos = [
         description: 'Hemat dengan paket sewa tahunan yang lebih murah.', 
         image: '/images/kost4.jpg',  // Path gambar kost
         location: 'Surabaya', 
-        path: '/promo/long-stay-offer' 
+        path: '/LongStayOffer' 
     },
     { 
         id: 'referral-bonus', 
@@ -40,7 +40,7 @@ const promos = [
         description: 'Ajak teman dan dapatkan cashback untuk sewa berikutnya.', 
         image: '/images/kost5.jpg',  // Path gambar kost
         location: 'Malang', 
-        path: '/promo/referral-bonus' 
+        path: '/ReferralBonus' 
     },
 ];
 

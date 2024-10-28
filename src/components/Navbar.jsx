@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -16,7 +17,7 @@ const Navbar = () => {
       <nav className="flex justify-between items-center p-6 bg-blue-600 text-white w-full">
         <h1 className="text-2xl font-bold">CariKost</h1>
         <div className="flex items-center">
-          <a href="/" className="mr-6 hover:text-gray-200">Beranda</a>
+          <Link to="/" className="mr-6 hover:text-gray-200">Beranda</Link>
           <button
             className="ml-4 text-white hover:text-gray-200 focus:outline-none"
             onClick={toggleSidebar}
@@ -39,22 +40,22 @@ const Navbar = () => {
             <h2 className="text-xl font-bold mb-4">Pusat Bantuan</h2>
             <ul className="mb-6">
               <li>
-                <a href="/help/faq" className="block py-2 text-blue-600 hover:bg-blue-100">FAQ</a>
+                <a href="/FAQ" className="block py-2 text-blue-600 hover:bg-blue-100">FAQ</a>
               </li>
               <li>
-                <a href="/help/contact" className="block py-2 text-blue-600 hover:bg-blue-100">Hubungi Kami</a>
+                <a href="/Contact" className="block py-2 text-blue-600 hover:bg-blue-100">Hubungi Kami</a>
               </li>
               <li>
-                <a href="/help/guide" className="block py-2 text-blue-600 hover:bg-blue-100">Panduan Pengguna</a>
+                <a href="/UserGuide" className="block py-2 text-blue-600 hover:bg-blue-100">Panduan Pengguna</a>
               </li>
             </ul>
             <h2 className="text-xl font-bold mb-4">Survey</h2>
             <ul>
               <li>
-                <a href="/survey/feedback" className="block py-2 text-blue-600 hover:bg-blue-100">Survey Pengguna</a>
+                <a href="/UserSurvey" className="block py-2 text-blue-600 hover:bg-blue-100">Survey Pengguna</a>
               </li>
               <li>
-                <a href="/survey/satisfaction" className="block py-2 text-blue-600 hover:bg-blue-100">Kepuasan Layanan</a>
+                <a href="/ServiceSatisfaction" className="block py-2 text-blue-600 hover:bg-blue-100">Kepuasan Layanan</a>
               </li>
             </ul>
           </div>
