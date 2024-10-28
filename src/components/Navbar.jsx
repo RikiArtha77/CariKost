@@ -18,6 +18,7 @@ const Navbar = () => {
         <h1 className="text-2xl font-bold">CariKost</h1>
         <div className="flex items-center">
           <Link to="/" className="mr-6 hover:text-gray-200">Beranda</Link>
+          <Link to="/Pesanan" className="mr-6 hover:text-gray-200">Pesanan</Link>
           <button
             className="ml-4 text-white hover:text-gray-200 focus:outline-none"
             onClick={toggleSidebar}

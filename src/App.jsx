@@ -19,7 +19,6 @@ import UserGuide from './menu/UserGuide';
 import UserSurvey from './menu/UserSurvey';
 import ServiceSatisfaction from './menu/ServiceSatisfaction';
 import Payment from './components/Payment';
-import IconSwitcher from './components/IconSwitcher';
 
 
 
