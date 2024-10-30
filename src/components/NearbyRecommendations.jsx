@@ -9,6 +9,7 @@ const recommendations = [
     price: 'Rp 1.500.000',
     image: '/images/kost4.jpg',
     description: 'Kost A terletak di pusat kota Jakarta, dengan akses mudah ke transportasi umum.',
+    address: 'Jl. Sudirman No. 45, Jakarta'
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const recommendations = [
     price: 'Rp 1.200.000',
     image: '/images/kost5.jpg',
     description: 'Kost B menawarkan lingkungan yang tenang dan nyaman di Bandung.',
+    address: 'Jl. Asia Afrika No. 123, Bandung'
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const recommendations = [
     price: 'Rp 1.300.000',
     image: '/images/kost1.jpg',
     description: 'Kost C dekat dengan pusat perbelanjaan di Surabaya, cocok untuk mahasiswa.',
+    address: 'Jl. Pemuda No. 88, Surabaya'
   },
 ];
 
@@ -63,6 +66,7 @@ function NearbyRecommendations() {
           <p className="text-gray-600">{selectedKost.location}</p>
           <p className="text-blue-600 font-bold">{selectedKost.price}</p>
           <p className="text-gray-700 mt-2">{selectedKost.description}</p>
+          <p className="text-gray-700 mt-2">{selectedKost.address}</p>
           <button
             onClick={handlePayment}
             className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200"
