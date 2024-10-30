@@ -10,10 +10,8 @@ function KostOwnerDashboard() {
     id: null,
     name: '',
     location: '',
-    address: '', // New field for address
     price: '',
     facilities: '',
-    type: 'putra', // Default type for kost
   });
 
   // Fetch kost listings from the API
@@ -79,7 +77,7 @@ function KostOwnerDashboard() {
 
   // Reset form data
   const resetForm = () => {
-    setFormData({ id: null, name: '', location: '', address: '', price: '', facilities: '', type: 'putra' });
+    setFormData({ id: null, name: '', location: '', price: '', facilities: '' });
     setShowForm(false);
   };
 
@@ -124,17 +122,6 @@ function KostOwnerDashboard() {
             />
           </div>
           <div>
-            <label className="block font-semibold">Address</label>
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
             <label className="block font-semibold">Price</label>
             <input
               type="text"
@@ -156,19 +143,6 @@ function KostOwnerDashboard() {
               required
             />
           </div>
-          <div>
-            <label className="block font-semibold">Type</label>
-            <select
-              name="type"
-              value={formData.type}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              required
-            >
-              <option value="putra">Putra</option>
-              <option value="putri">Putri</option>
-            </select>
-          </div>
           <button
             type="submit"
             className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600"
@@ -188,10 +162,8 @@ function KostOwnerDashboard() {
             <div>
               <h2 className="text-xl font-bold">{kost.name}</h2>
               <p className="text-gray-600">Location: {kost.location}</p>
-              <p className="text-gray-600">Address: {kost.address}</p> {/* Display address */}
               <p className="text-gray-800 font-semibold">Price: {kost.price}</p>
               <p className="text-gray-600">Facilities: {kost.facilities.join(', ')}</p>
-              <p className="text-gray-600">Type: {kost.type}</p> {/* Display type */}
             </div>
             <div className="flex space-x-2">
               <button

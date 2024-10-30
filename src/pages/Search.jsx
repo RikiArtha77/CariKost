@@ -51,7 +51,7 @@ function Search() {
   };
 
   const handleBooking = () => {
-    navigate('/Payment', { state: { kost: selectedKost } });
+    navigate('/Booking', { state: { kost: selectedKost} });
   };
 
   return (
@@ -125,14 +125,6 @@ function Search() {
             <option value="putri">Kost Putri</option>
           </select>
         </div>
-
-        {/* Tombol Cari */}
-        {/* <button
-          className="px-4 py-2 bg-blue-600 text-white font-semibold rounded"
-          onClick={handleSearch} // Call the search function here
-        >
-          Cari
-        </button> */}
       </div>
 
       {/* Hasil Pencarian */}
