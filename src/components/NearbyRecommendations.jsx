@@ -37,7 +37,7 @@ function NearbyRecommendations() {
   };
 
   const handlePayment = () => {
-    navigate('/Payment', { state: { kost: selectedKost } }); // Mengirimkan data kost terpilih
+    navigate('/Booking', { state: { kost: selectedKost } }); // Mengirimkan data kost terpilih
   };
 
   return (

@@ -18,7 +18,7 @@ const Navbar = () => {
         <h1 className="text-2xl font-bold">CariKost</h1>
         <div className="flex items-center">
           <Link to="/" className="mr-6 hover:text-gray-200">Beranda</Link>
-          <Link to="/Pesanan" className="mr-6 hover:text-gray-200">Pesanan</Link>
+          <Link to="/Diproses" className="mr-6 hover:text-gray-200">Pesanan</Link>
           <button
             className="ml-4 text-white hover:text-gray-200 focus:outline-none"
             onClick={toggleSidebar}
@@ -57,6 +57,12 @@ const Navbar = () => {
               </li>
               <li>
                 <a href="/ServiceSatisfaction" className="block py-2 text-blue-600 hover:bg-blue-100">Kepuasan Layanan</a>
+              </li>
+            </ul>
+            <h2 className="text-xl font-bold mb-4">Role</h2>
+            <ul>
+              <li>
+                <a href="/" className="block py-2 text-blue-600 hover:bg-blue-100">Pilih Role</a>
               </li>
             </ul>
           </div>
