@@ -16,9 +16,11 @@ function Booking() {
 
         {/* Kost Details */}
         <div className="bg-white p-4 rounded shadow-md">
-          <h2 className="text-2xl font-semibold mb-2">{kost ? kost.name : 'Kos daerah banyuning gang pisang no 12'}</h2>
+          <h2 className="text-2xl font-semibold mb-2">{kost ? kost.name : ''}</h2>
           <p className="text-gray-600 font-semibold">Alamat:</p>
-          <p className="mb-4">{kost ? kost.location : 'Jl. Merpati No. 15, Jakarta Selatan'}</p>
+          <p className="mb-4">
+            {kost ? `${kost.location}, ${kost.address}` : ''} {/* Gabungkan lokasi dan alamat */}
+          </p>
           <hr className="my-4 border-gray-300" />
 
           <p className="text-gray-600 font-semibold">Dikelola Oleh:</p>

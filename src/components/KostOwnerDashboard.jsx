@@ -1,189 +1,99 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
-const apiUrl = 'https://api.example.com/kosts'; // Replace with your actual API endpoint
+const KostOwnerDashboard = ({ mode = 'add' }) => {
+    const isEditMode = mode === 'edit';
+    const [namaKos, setNamaKos] = useState('');
+    const [jenisKos, setJenisKos] = useState('');
+    const [alamat, setAlamat] = useState('');
+    const [harga, setHarga] = useState('');
 
-function KostOwnerDashboard() {
-  const [kosts, setKosts] = useState([]);
-  const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({
-    id: null,
-    name: '',
-    location: '',
-    price: '',
-    facilities: '',
-  });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-  // Fetch kost listings from the API
-  useEffect(() => {
-    const fetchKosts = async () => {
-      try {
-        const response = await axios.get(apiUrl);
-        setKosts(response.data);
-      } catch (error) {
-        console.error('Error fetching kosts:', error);
-      }
+        // Data yang akan dikirim ke API
+        const kosData = {
+            namaKos,
+            jenisKos,
+            alamat,
+            harga
+        };
+
+        try {
+            const response = await fetch(isEditMode ? 'api/kosts' : 'api/kosts', {
+                method: isEditMode ? 'PUT' : 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(kosData)
+            });
+
+            if (response.ok) {
+                alert(isEditMode ? 'Kos berhasil diperbarui' : 'Kos berhasil ditambahkan');
+                // Reset form atau lakukan tindakan lain sesuai kebutuhan
+            } else {
+                alert('Terjadi kesalahan saat menyimpan data kos');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan jaringan');
+        }
     };
-    
-    fetchKosts();
-  }, []);
 
-  // Handle form input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    return (
+        <div className="bg-white-300 p-6 w-11/12 mx-auto h-full rounded-lg m-5 shadow-md">
+            <h2 className="text-2xl font-bold mb-4">{isEditMode ? 'Edit Kos' : 'Tambah Kos'}</h2>
+            <form onSubmit={handleSubmit} className="flex flex-col">
+                <label className="mb-2 font-semibold">Nama Kos</label>
+                <input
+                    type="text"
+                    className="p-2 mb-4 border-2 border-blue-600 rounded"
+                    placeholder="Masukkan nama kos"
+                    value={namaKos}
+                    onChange={(e) => setNamaKos(e.target.value)}
+                />
 
-  // Add or update kost listing
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const facilitiesArray = formData.facilities.split(',').map((item) => item.trim());
-      const kostData = { ...formData, facilities: facilitiesArray };
+                <label className="mb-2 font-semibold">Jenis Kos</label>
+                <div className="flex gap-4 mb-4">
+                    <button
+                        type="button"
+                        className={`text-blue-600 font-bold py-2 px-4 rounded-lg border-2 ${jenisKos === 'Campur' ? 'bg-blue-600 text-white' : 'bg-white border-blue-600'}`}
+                        onClick={() => setJenisKos('Campur')}
+                    >
+                        Campur
+                    </button>
+                    <button
+                        type="button"
+                        className={`text-blue-600 font-bold py-2 px-4 rounded-lg border-2 ${jenisKos === 'Putri' ? 'bg-blue-600 text-white' : 'bg-white border-blue-600'}`}
+                        onClick={() => setJenisKos('Putri')}
+                    >
+                        Putri
+                    </button>
+                </div>
 
-      if (formData.id) {
-        // Update existing kost
-        await axios.put(`${apiUrl}/${formData.id}`, kostData);
-        setKosts((prev) => prev.map((kost) => (kost.id === formData.id ? { ...kost, ...kostData } : kost)));
-      } else {
-        // Add new kost
-        const response = await axios.post(apiUrl, kostData);
-        setKosts((prev) => [...prev, response.data]); // Assuming response.data includes the new kost with its ID
-      }
-      resetForm();
-    } catch (error) {
-      console.error('Error saving kost:', error);
-    }
-  };
+                <label className="mb-2 font-semibold">Alamat</label>
+                <input
+                    type="text"
+                    className="p-2 mb-4 border-2 border-blue-600 rounded"
+                    placeholder="Masukkan alamat kos"
+                    value={alamat}
+                    onChange={(e) => setAlamat(e.target.value)}
+                />
 
-  // Delete a kost listing
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`${apiUrl}/${id}`);
-      setKosts((prev) => prev.filter((kost) => kost.id !== id));
-    } catch (error) {
-      console.error('Error deleting kost:', error);
-    }
-  };
+                <label className="mb-2 font-semibold">Harga</label>
+                <input
+                    type="text"
+                    className="p-2 mb-4 border-2 border-blue-600 rounded"
+                    placeholder="Masukkan harga kos"
+                    value={harga}
+                    onChange={(e) => setHarga(e.target.value)}
+                />
 
-  // Edit a kost listing
-  const handleEdit = (kost) => {
-    setFormData({
-      ...kost,
-      facilities: kost.facilities.join(', '), // Join facilities for easy editing
-    });
-    setShowForm(true);
-  };
-
-  // Reset form data
-  const resetForm = () => {
-    setFormData({ id: null, name: '', location: '', price: '', facilities: '' });
-    setShowForm(false);
-  };
-
-  return (
-    <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6">Kost Owner Dashboard</h1>
-
-      {/* Add New Listing Button */}
-      <button
-        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        onClick={() => setShowForm(!showForm)}
-      >
-        {showForm ? 'Cancel' : 'Add New Kost'}
-      </button>
-
-      {/* Kost Form */}
-      {showForm && (
-        <form
-          onSubmit={handleFormSubmit}
-          className="p-4 mb-4 bg-white rounded shadow-md space-y-4"
-        >
-          <div>
-            <label className="block font-semibold">Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label className="block font-semibold">Location</label>
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label className="block font-semibold">Price</label>
-            <input
-              type="text"
-              name="price"
-              value={formData.price}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label className="block font-semibold">Facilities (comma-separated)</label>
-            <input
-              type="text"
-              name="facilities"
-              value={formData.facilities}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600"
-          >
-            {formData.id ? 'Update Kost' : 'Add Kost'}
-          </button>
-        </form>
-      )}
-
-      {/* Kost Listings */}
-      <div className="space-y-4">
-        {kosts.map((kost) => (
-          <div
-            key={kost.id}
-            className="p-4 bg-white rounded shadow flex items-center justify-between"
-          >
-            <div>
-              <h2 className="text-xl font-bold">{kost.name}</h2>
-              <p className="text-gray-600">Location: {kost.location}</p>
-              <p className="text-gray-800 font-semibold">Price: {kost.price}</p>
-              <p className="text-gray-600">Facilities: {kost.facilities.join(', ')}</p>
-            </div>
-            <div className="flex space-x-2">
-              <button
-                onClick={() => handleEdit(kost)}
-                className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(kost.id)}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+                <button type="submit" className="text-blue-600 font-bold bg-white-700 py-2 px-4 rounded-lg border-2 border-blue-600 hover:bg-blue-600 hover:text-white transition">
+                    Submit
+                </button>
+            </form>
+        </div>
+    );
+};
 
 export default KostOwnerDashboard;

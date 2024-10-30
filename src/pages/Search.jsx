@@ -51,7 +51,7 @@ function Search() {
   };
 
   const handleBooking = () => {
-    navigate('/Booking', { state: { kost: selectedKost} });
+    navigate('/Booking', { state: { kost: selectedKost } });
   };
 
   return (
