@@ -1,16 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 const LoginChoice = ({ onClose }) => {
-  const navigate = useNavigate();
-
   const handleChoice = (role) => {
-    if (role === "Pemilik Kost") {
-      navigate("/KostOwnerDashboard");
-    } else if (role === "Pengguna") {
-      navigate("/");
-    }
-    onClose(); // Tutup dialog setelah memilih peran
+    onClose(role); // Kirimkan peran yang dipilih ke fungsi onClose di App
   };
 
   return (

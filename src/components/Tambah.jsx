@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const KostOwnerDashboard = ({ mode = 'add' }) => {
+const Tambah = ({ mode = 'add' }) => {
     const isEditMode = mode === 'edit';
     const [namaKos, setNamaKos] = useState('');
     const [jenisKos, setJenisKos] = useState('');
@@ -19,7 +19,7 @@ const KostOwnerDashboard = ({ mode = 'add' }) => {
         };
 
         try {
-            const response = await fetch(isEditMode ? 'api/kosts' : 'api/kosts', {
+            const response = await fetch(isEditMode ? '/api/kos/edit' : '/api/kos/add', {
                 method: isEditMode ? 'PUT' : 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -96,4 +96,4 @@ const KostOwnerDashboard = ({ mode = 'add' }) => {
     );
 };
 
-export default KostOwnerDashboard;
+export default Tambah;

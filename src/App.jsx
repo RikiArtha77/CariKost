@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import NavbarPemilikKost from './components/NavbarPemilikKost';
 import PromoKost from './components/PromoKost';
 import HeroSection from './components/HeroSection';
 import Search from './pages/Search';
@@ -21,40 +22,49 @@ import Payment from './components/Payment';
 import LoginChoice from './components/LoginChoice';
 import Booking from './components/Booking';
 import Diproses from './components/Diproses';
-import KostOwnerDashboard from './components/KostOwnerDashboard';
-
-// Komponen untuk halaman pemilik kost dan pengguna
-const PemilikKostPage = () => <div>Pemilik Kost Page</div>;
-const PenggunaPage = () => <div>Pengguna Page</div>;
+import Listkos from './components/Listkos';
+import AddKos from './pages/AddKos';
+import EditKos from './pages/EditKos';
+import Kos from './pages/kos';
+import Profile from './components/Profile';
 
 const App = () => {
   const [showLoginChoice, setShowLoginChoice] = useState(true);
+  const [userRole, setUserRole] = useState('');
 
   useEffect(() => {
     document.title = "CariKost";
-    const favicon = document.getElementById('favicon');
   }, []);
 
-  const handleLoginChoiceClose = () => {
+  const handleLoginChoiceClose = (role) => {
     setShowLoginChoice(false);
+    setUserRole(role === 'Pemilik Kost' ? 'pemilikKost' : 'pengguna'); // Set peran pengguna berdasarkan pilihan
   };
 
   return (
     <Router>
       {showLoginChoice ? (
-        <LoginChoice onClose={handleLoginChoiceClose} />
+        <LoginChoice onClose={handleLoginChoiceClose} /> // Kirim peran ke fungsi penutupan
       ) : (
         <>
-          <Navbar />
+          {userRole === 'pemilikKost' ? (
+            <NavbarPemilikKost />
+          ) : (
+            <Navbar />
+          )}
           <Routes>
             <Route path="/" element={
-              <>
-                <HeroSection />
-                <NearbyRecommendations />
-                <PromoKost />
-                <Testimonial />
-                <Footer />
-              </>
+              userRole === 'pemilikKost' ? (
+                <Kos /> // Tampilkan Kos jika peran adalah pemilik kost
+              ) : (
+                <>
+                  <HeroSection />
+                  <NearbyRecommendations />
+                  <PromoKost />
+                  <Testimonial />
+                  <Footer />
+                </>
+              )
             } />
             <Route path="/Search" element={<Search />} />
             <Route path="/MonthlyDiscount" element={<MonthlyDiscount />} />
@@ -70,7 +80,10 @@ const App = () => {
             <Route path="/Payment" element={<Payment />} />
             <Route path="/Booking" element={<Booking />} />
             <Route path="/Diproses" element={<Diproses />} />
-            <Route path="/KostOwnerDashboard" element={<KostOwnerDashboard />} />
+            <Route path="/ListKos" element={<Listkos />} />
+            <Route path="/AddKos" element={<AddKos />} />
+            <Route path="/EditKos" element={<EditKos />} />
+            <Route path="/Profile" element={<Profile />} />
           </Routes>
         </>
       )}
