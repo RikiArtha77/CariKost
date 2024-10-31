@@ -27,6 +27,8 @@ import AddKos from './pages/AddKos';
 import EditKos from './pages/EditKos';
 import Kos from './pages/kos';
 import Profile from './components/Profile';
+import Riwayat from './components/Riwayat';
+import Bayar from './components/Bayar';
 
 const App = () => {
   const [showLoginChoice, setShowLoginChoice] = useState(true);
@@ -62,7 +64,6 @@ const App = () => {
                   <NearbyRecommendations />
                   <PromoKost />
                   <Testimonial />
-                  <Footer />
                 </>
               )
             } />
@@ -84,7 +85,10 @@ const App = () => {
             <Route path="/AddKos" element={<AddKos />} />
             <Route path="/EditKos" element={<EditKos />} />
             <Route path="/Profile" element={<Profile />} />
+            <Route path="/Riwayat" element={<Riwayat />} />
+            <Route path="/Bayar" element={<Bayar />} />
           </Routes>
+          <Footer />
         </>
       )}
     </Router>

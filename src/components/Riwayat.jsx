@@ -1,12 +1,16 @@
-import React ,{useState,useEffect } from 'react';
+import React, {useState,useEffect} from 'react';
 import Navbar1 from './Navbar1';
-import { Link,useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getKost } from '../services/API';
 
-const Diproses = () => {
+const Riwayat = () => {
   const location = useLocation();
-  const { date = "Tanggal belum dipilih", cost = "Harga belum tersedia" } = location.state || {}; // Berikan nilai default
+  const { date = "Tanggal belum dipilih", cost = "Harga belum tersedia", status = "Status tidak tersedia" } = location.state || {}; // Nilai default jika data tidak ada
+
+  const handleReview = () => alert("Tinggalkan review");
+
   const [products, setProducts] = useState([]);
+
   useEffect(()=>{
     fetchKosts();
   },[]);
@@ -22,7 +26,6 @@ const Diproses = () => {
     });
 };
 
-  const handleCancel = () => alert("Pesanan Dibatalkan");
 
   return (
     <div className="w-11/12 p-4 bg-white shadow-md rounded-lg">
@@ -43,28 +46,21 @@ const Diproses = () => {
             <h3 className="font-bold">{products[0].nama_kost}</h3>
             <p>{products[0].alamat}</p>
             <p className="mt-1 text-sm text-gray-600">Tanggal Booking: {date}</p>
-            <p className="mt-1 text-sm text-gray-600">Biaya Per Bulan: {cost}</p>
-          </div>
-          )}
+            <p className="mt-1 text-sm text-gray-600">Biaya: {cost}</p>
+          </div>)}
           
         </div>
         <div className="flex flex-col space-y-2">
           <button className="bg-green-500 text-white px-4 py-1 rounded">
-            Diterima
+            Selesai
           </button>
-          <button className="bg-gray-300 text-gray-700 px-4 py-1 rounded">
-            Ditolak
+          <button onClick={handleReview} className="bg-white text-gray-700 border border-gray-300 px-4 py-1 rounded hover:bg-gray-100">
+            Review
           </button>
-          <button onClick={handleCancel} className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600">
-            Batal
-          </button>
-          <Link to="/Booking" className="bg-gray-200 text-gray-700 px-4 py-1 rounded hover:bg-gray-300">
-            Edit
-          </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default Diproses;
+export default Riwayat;

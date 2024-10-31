@@ -3,7 +3,9 @@ import Listkos from '../components/Listkos'
 
 const Kos = () => {
   return (
-    <Listkos/>
+    <>
+      <Listkos/>
+    </>
   )
 }
 

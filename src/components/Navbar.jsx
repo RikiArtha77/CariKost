@@ -62,7 +62,10 @@ const Navbar = () => {
             <h2 className="text-xl font-bold mb-4">Role</h2>
             <ul>
               <li>
-                <a href="/" className="block py-2 text-blue-600 hover:bg-blue-100">Pilih Role</a>
+                <a href="/NavbarPemilikKost" className="block py-2 text-blue-600 hover:bg-blue-100">Pilih Pemilik Kost</a>
+              </li>
+              <li>
+                <a href="/" className="block py-2 text-blue-600 hover:bg-blue-100">Pilih Pengguna</a>
               </li>
             </ul>
           </div>
