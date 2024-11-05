@@ -43,19 +43,3 @@ export const deleteKost = async (id) => {
         throw error;
     }
 };
-
-// Update a specific Kost by ID
-export const updateKost = async (id, updatedData) => {
-    try {
-        const response = await axios.put(`${API_URL}/${id}`, updatedData, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        console.log("Data successfully updated:", response);
-        return response.data;
-    } catch (error) {
-        console.error("Failed to update Kost data:", error);
-        throw error;
-    }
-};

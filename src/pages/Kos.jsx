@@ -1,11 +1,10 @@
 import React from 'react'
-import Listkos from '../components/Listkos'
+import ListKos from '../components/ListKos'
+import Tambah from '../components/Tambah'
 
 const Kos = () => {
   return (
-    <>
-      <Listkos/>
-    </>
+    <ListKos/>
   )
 }
 
