@@ -23,7 +23,7 @@ const Navbar = () => {
             className="ml-4 text-white hover:text-gray-200 focus:outline-none"
             onClick={toggleSidebar}
           >
-            {isSidebarOpen ? 'Menu' : 'Menu'}
+            {isSidebarOpen ? 'Tutup Menu' : 'Menu'}
           </button>
         </div>
       </nav>
@@ -31,41 +31,32 @@ const Navbar = () => {
       {/* Sidebar */}
       {isSidebarOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 z-50">
-          <div className="absolute top-0 left-0 h-full w-64 bg-white shadow-lg p-4">
+          <div className="absolute top-0 right-0 h-full w-64 bg-white shadow-lg p-4 flex flex-col">
             <button
-              className="text-gray-500 hover:text-gray-800 mb-4"
+              className="text-gray-500 hover:text-gray-800 mb-4 self-end"
               onClick={closeSidebar}
             >
               &times; Tutup
             </button>
-            <h2 className="text-xl font-bold mb-4">Pusat Bantuan</h2>
-            <ul className="mb-6">
+            <h2 className="text-xl font-bold mb-4 self-end">Pusat Bantuan</h2>
+            <ul className="mb-6 flex flex-col items-end">
               <li>
-                <a href="/FAQ" className="block py-2 text-blue-600 hover:bg-blue-100">FAQ</a>
+                <Link to="/FAQ" className="block py-2 text-blue-600 hover:bg-blue-100">FAQ</Link>
               </li>
               <li>
-                <a href="/Contact" className="block py-2 text-blue-600 hover:bg-blue-100">Hubungi Kami</a>
+                <Link to="/Contact" className="block py-2 text-blue-600 hover:bg-blue-100">Hubungi Kami</Link>
               </li>
               <li>
-                <a href="/UserGuide" className="block py-2 text-blue-600 hover:bg-blue-100">Panduan Pengguna</a>
-              </li>
-            </ul>
-            <h2 className="text-xl font-bold mb-4">Survey</h2>
-            <ul>
-              <li>
-                <a href="/UserSurvey" className="block py-2 text-blue-600 hover:bg-blue-100">Survey Pengguna</a>
-              </li>
-              <li>
-                <a href="/ServiceSatisfaction" className="block py-2 text-blue-600 hover:bg-blue-100">Kepuasan Layanan</a>
+                <Link to="/UserGuide" className="block py-2 text-blue-600 hover:bg-blue-100">Panduan Pengguna</Link>
               </li>
             </ul>
-            <h2 className="text-xl font-bold mb-4">Role</h2>
-            <ul>
+            <h2 className="text-xl font-bold mb-4 self-end">Survey</h2>
+            <ul className="flex flex-col items-end">
               <li>
-                <a href="/NavbarPemilikKost" className="block py-2 text-blue-600 hover:bg-blue-100">Pilih Pemilik Kost</a>
+                <Link to="/UserSurvey" className="block py-2 text-blue-600 hover:bg-blue-100">Survey Pengguna</Link>
               </li>
               <li>
-                <a href="/" className="block py-2 text-blue-600 hover:bg-blue-100">Pilih Pengguna</a>
+                <Link to="/ServiceSatisfaction" className="block py-2 text-blue-600 hover:bg-blue-100">Kepuasan Layanan</Link>
               </li>
             </ul>
           </div>

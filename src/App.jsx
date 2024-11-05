@@ -19,7 +19,6 @@ import UserGuide from './menu/UserGuide';
 import UserSurvey from './menu/UserSurvey';
 import ServiceSatisfaction from './menu/ServiceSatisfaction';
 import Payment from './components/Payment';
-import LoginChoice from './components/LoginChoice';
 import Booking from './components/Booking';
 import Diproses from './components/Diproses';
 import Listkos from './components/Listkos';
@@ -29,44 +28,84 @@ import Kos from './pages/kos';
 import Profile from './components/Profile';
 import Riwayat from './components/Riwayat';
 import Bayar from './components/Bayar';
+import PilihRole from './components/PilihRole';
+
+const WelcomeScreen = ({ onEnterAsUser, onEnterAsOwner }) => (
+  <>
+    <div className="flex">
+      <nav className="flex justify-between items-center p-6 bg-blue-600 text-white w-full navbar-container">
+        <div className="flex-grow"> {/* Flex-grow agar marquee bisa mengambil ruang yang tersisa */}
+          <div className="marquee">
+            <span>Selamat datang di CariKost | Temukan kost terbaik untuk Anda | Nikmati promo menarik setiap hari!</span>
+          </div>
+        </div>
+      </nav>
+    </div>
+  <div className="h-screen grid place-items-center bg-gray-100">
+    <div className="bg-blue-500 p-6 rounded-lg shadow-lg text-center max-w-sm w-full">
+      <h1 className="text-2xl font-semibold text-white mb-2">Selamat Datang di CariKost</h1>
+      <p className="text-lg text-white mb-6">Temukan kost terbaik untuk Anda!</p>
+      
+      <div className="flex flex-col gap-4 w-full">
+        <button
+          onClick={onEnterAsUser}
+          className="border-2 border-blue-500 bg-blue-100 text-blue-700 py-2 px-4 rounded-lg hover:bg-blue-200 transition"
+        >
+          Masuk sebagai Pengguna
+        </button>
+        <button
+          onClick={onEnterAsOwner}
+          className="border-2 border-green-500 bg-green-100 text-green-700 py-2 px-4 rounded-lg hover:bg-green-200 transition"
+        >
+          Masuk sebagai Pemilik Kost
+        </button>
+      </div>
+    </div>
+  </div>
+  </>
+);
 
 const App = () => {
-  const [showLoginChoice, setShowLoginChoice] = useState(true);
   const [userRole, setUserRole] = useState('');
 
   useEffect(() => {
     document.title = "CariKost";
   }, []);
 
-  const handleLoginChoiceClose = (role) => {
-    setShowLoginChoice(false);
-    setUserRole(role === 'Pemilik Kost' ? 'pemilikKost' : 'pengguna'); // Set peran pengguna berdasarkan pilihan
+  const handleEnterAsUser = () => {
+    setUserRole('pengguna');
+  };
+
+  const handleEnterAsOwner = () => {
+    setUserRole('pemilikKost');
   };
 
   return (
     <Router>
-      {showLoginChoice ? (
-        <LoginChoice onClose={handleLoginChoiceClose} /> // Kirim peran ke fungsi penutupan
+      {/* Navbar sesuai peran yang dipilih */}
+      {userRole === 'pemilikKost' ? <NavbarPemilikKost /> : <Navbar />}
+
+      {/* Tampilkan WelcomeScreen jika belum memilih peran */}
+      {!userRole ? (
+        <WelcomeScreen onEnterAsUser={handleEnterAsUser} onEnterAsOwner={handleEnterAsOwner} />
       ) : (
         <>
-          {userRole === 'pemilikKost' ? (
-            <NavbarPemilikKost />
-          ) : (
-            <Navbar />
-          )}
           <Routes>
-            <Route path="/" element={
-              userRole === 'pemilikKost' ? (
-                <Kos /> // Tampilkan Kos jika peran adalah pemilik kost
-              ) : (
-                <>
-                  <HeroSection />
-                  <NearbyRecommendations />
-                  <PromoKost />
-                  <Testimonial />
-                </>
-              )
-            } />
+            <Route
+              path="/"
+              element={
+                userRole === 'pemilikKost' ? (
+                  <Kos /> // Tampilkan halaman khusus pemilik kost
+                ) : (
+                  <>
+                    <HeroSection />
+                    <NearbyRecommendations />
+                    <PromoKost />
+                    <Testimonial />
+                  </>
+                )
+              }
+            />
             <Route path="/Search" element={<Search />} />
             <Route path="/MonthlyDiscount" element={<MonthlyDiscount />} />
             <Route path="/NewResidentSpecial" element={<NewResidentSpecial />} />
@@ -87,6 +126,7 @@ const App = () => {
             <Route path="/Profile" element={<Profile />} />
             <Route path="/Riwayat" element={<Riwayat />} />
             <Route path="/Bayar" element={<Bayar />} />
+            <Route path="/PilihRole" element={<PilihRole />} />
           </Routes>
           <Footer />
         </>
