@@ -34,34 +34,34 @@ const WelcomeScreen = ({ onEnterAsUser, onEnterAsOwner }) => (
   <>
     <div className="flex">
       <nav className="flex justify-between items-center p-6 bg-blue-600 text-white w-full navbar-container">
-        <div className="flex-grow"> {/* Flex-grow agar marquee bisa mengambil ruang yang tersisa */}
+        <div className="flex-grow">
           <div className="marquee">
             <span>Selamat datang di CariKost | Temukan kost terbaik untuk Anda | Nikmati promo menarik setiap hari!</span>
           </div>
         </div>
       </nav>
     </div>
-  <div className="h-screen grid place-items-center bg-gray-100">
-    <div className="bg-blue-500 p-6 rounded-lg shadow-lg text-center max-w-sm w-full">
-      <h1 className="text-2xl font-semibold text-white mb-2">Selamat Datang di CariKost</h1>
-      <p className="text-lg text-white mb-6">Temukan kost terbaik untuk Anda!</p>
-      
-      <div className="flex flex-col gap-4 w-full">
-        <button
-          onClick={onEnterAsUser}
-          className="border-2 border-blue-500 bg-blue-100 text-blue-700 py-2 px-4 rounded-lg hover:bg-blue-200 transition"
-        >
-          Masuk sebagai Pengguna
-        </button>
-        <button
-          onClick={onEnterAsOwner}
-          className="border-2 border-green-500 bg-green-100 text-green-700 py-2 px-4 rounded-lg hover:bg-green-200 transition"
-        >
-          Masuk sebagai Pemilik Kost
-        </button>
+    <div className="h-screen grid place-items-center bg-gray-100">
+      <div className="bg-blue-500 p-6 rounded-lg shadow-lg text-center max-w-sm w-full">
+        <h1 className="text-2xl font-semibold text-white mb-2">Selamat Datang di CariKost</h1>
+        <p className="text-lg text-white mb-6">Temukan kost terbaik untuk Anda!</p>
+        
+        <div className="flex flex-col gap-4 w-full">
+          <button
+            onClick={onEnterAsUser}
+            className="border-2 border-blue-500 bg-blue-100 text-blue-700 py-2 px-4 rounded-lg hover:bg-blue-200 transition"
+          >
+            Masuk sebagai Pengguna
+          </button>
+          <button
+            onClick={onEnterAsOwner}
+            className="border-2 border-green-500 bg-green-100 text-green-700 py-2 px-4 rounded-lg hover:bg-green-200 transition"
+          >
+            Masuk sebagai Pemilik Kost
+          </button>
+        </div>
       </div>
     </div>
-  </div>
   </>
 );
 
@@ -82,8 +82,8 @@ const App = () => {
 
   return (
     <Router>
-      {/* Navbar sesuai peran yang dipilih */}
-      {userRole === 'pemilikKost' ? <NavbarPemilikKost /> : <Navbar />}
+      {/* Tampilkan Navbar sesuai peran yang dipilih, hanya jika sudah memilih peran */}
+      {userRole && (userRole === 'pemilikKost' ? <NavbarPemilikKost /> : <Navbar />)}
 
       {/* Tampilkan WelcomeScreen jika belum memilih peran */}
       {!userRole ? (
