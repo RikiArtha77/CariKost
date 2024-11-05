@@ -24,6 +24,7 @@ import Booking from './components/Booking';
 import Diproses from './components/Diproses';
 import Review from './components/Review';
 import Riwayat from './components/Riwayat';
+import Duit from './components/Duit';
 
 const WelcomeScreen = ({ onEnterAsUser, onEnterAsOwner }) => (
   <>
@@ -117,6 +118,7 @@ const App = () => {
             <Route path="/Profile" element={<Profile />} />
             <Route path="/PilihRole" element={<PilihRole />} />
             <Route path="/AddKos" element={<AddKos/>} />
+            <Route path="/Duit" element={<Duit/>} />
           </Routes>
           <Footer />
         </>

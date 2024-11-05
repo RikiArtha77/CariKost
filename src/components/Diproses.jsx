@@ -61,7 +61,7 @@ const Diproses = () => {
           <button className="bg-green-500 text-white px-4 py-1 rounded">
             Diterima
           </button>
-          <button onClick={handleCancel}className="bg-gray-300 text-gray-700 px-4 py-1 rounded">
+          <button onClick={handleCancel} className="bg-gray-300 text-gray-700 px-4 py-1 rounded">
             Ditolak
           </button>
           <Link to="/"><button  className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600">

@@ -1,6 +1,5 @@
 import React, {useState,useEffect}from 'react';
 import {Link, useLocation,useNavigate} from 'react-router-dom';
-import Duit from './Duit';
 
 const Bayar = () => {
   const location = useLocation();
@@ -19,9 +18,11 @@ const Bayar = () => {
   const handlePay = () => {
     navigate('/Duit', { state: { product, date, cost } });
   };
+  
   const handleRiwayat = () => {
     navigate('/Riwayat', { state: { product, date, cost } });
   };
+  
   return (
     <div className="w-11/12 p-4 bg-white shadow-md rounded-lg">
       <div className="bg-blue-600 text-white text-center py-2 rounded-t-md">
