@@ -25,6 +25,7 @@ import Diproses from './components/Diproses';
 import Review from './components/Review';
 import Riwayat from './components/Riwayat';
 import Duit from './components/Duit';
+import FeatureFilter from './components/FeatureFilter';
 
 const WelcomeScreen = ({ onEnterAsUser, onEnterAsOwner }) => (
   <>
@@ -119,6 +120,7 @@ const App = () => {
             <Route path="/PilihRole" element={<PilihRole />} />
             <Route path="/AddKos" element={<AddKos/>} />
             <Route path="/Duit" element={<Duit/>} />
+            <Route path="/FeatureFilter" element={<FeatureFilter/>} />
           </Routes>
           <Footer />
         </>
